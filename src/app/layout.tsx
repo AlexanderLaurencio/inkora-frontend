@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Inkora",
+  title: "Inkora | Home",
   description: "Inkora is blogging platform where users can blogs publish posts",
 };
 
