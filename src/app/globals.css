@@ -15,24 +15,24 @@
 
 @font-face {
     font-family: 'Merriweather';
-    src: url("/fonts/Merriweather/Merriweather-VariableFont_opsz\,wdth\,wght.ttf");
+    src: url("/fonts/Merriweather/Merriweather-VariableFont_opsz\,wdth\,wght.ttf") format("truetype");
     font-weight: 100 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Merriweather';
-    src: url("/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz\,wdth\,wght.ttf");
+    src: url("/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz\,wdth\,wght.ttf") format("truetype");
     font-weight: 100 900;
     font-style: italic;
 }
 
 :root{
-    --bg-primary: hsla(0, 0%, 98.82%,1);
-    --bg-secondary: hsla(0, 0%, 94.12%,1);
-    --text-primary: hsla(0, 0%, 12.16%,1);
-    --text-secondary: hsla(0, 0%, 16.47%,1);
-    --red: hsla(0, 69.61%, 60%,1);
+    --bg-primary: hsla(0, 0%, 98.82%, 1);
+    --bg-secondary: hsla(0, 0%, 94.12%, 1);
+    --text-primary: hsla(0, 0%, 12.16%, 1);
+    --text-secondary: hsla(0, 0%, 16.47%, 1);
+    --red: hsla(0, 69.61%, 60%, 1);
 
     --space-xs: min(5%, .25rem);
     --space-s: min(2.5%, .5rem);
