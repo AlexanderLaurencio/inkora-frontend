@@ -59,3 +59,14 @@
   	--border-radius-medium: .8rem;
   	--border-radius-large: 1rem;
 }
+
+*{
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--bg-primary);
+}
