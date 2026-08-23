@@ -1,9 +1,25 @@
+"use client"
+import { Suspense, useState } from "react";
+import Navbar from "./components/navbar/navbar";
+import NavbarSkeleton from "./components/navbar/navbarSkeleton";
+import Sidenav from "./components/sidenav/sidenav";
 
 
 export default function Home() {
-  return (
-    <div>
+  let [showSidenav,setShowSidenav] = useState(false)
 
-    </div>
+  function onShowSidenav() {
+    setShowSidenav(!showSidenav)
+  }
+
+  return (
+    <>
+      <header>
+        <Suspense fallback={<NavbarSkeleton />}>
+          {!showSidenav && <Navbar onShowSidenav={onShowSidenav}/>}
+        </Suspense>
+        {showSidenav && <Sidenav onShowSidenav={onShowSidenav}/>}
+      </header>
+    </>
   );
 }
