@@ -1,0 +1,121 @@
+.hero, .heroSkeleton{
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--space-x);
+}
+
+
+.heroSkeleton{
+    user-select: none;
+    pointer-events: none;
+}
+
+.hero *, .heroSkeleton *{
+    margin-top: var(--space-x);
+}
+
+.hero h1, .heroSkeleton h1{
+    font-family: 'Merriweather';
+    font-size: var(--font-size-h1);
+}
+
+.hero h1{
+    width: 70%;
+}
+
+.heroSkeleton h1{
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-large);
+    color: transparent;
+    max-height: 50px;
+}
+
+.hero p{
+    color: var(--text-primary);
+    font-size: var(--font-size-h6);
+    font-weight: 300;
+}
+
+.heroSkeleton p{
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-large);
+    color: transparent;
+    width: max-content;
+}
+
+.hero_links_wrapper, .hero_links_wrapperSkeleton{
+    display: flex;
+    padding-left: var(--space-x);
+    justify-content: start;
+    column-gap: var(--space-x);
+    flex-wrap: wrap;
+}
+
+.hero_links_wrapperSkeleton a{
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--bg-secondary) !important;
+    color: transparent;
+}
+
+.hero_links_wrapper a, .hero_links_wrapperSkeleton a{
+    display: inline-block;
+    padding: var(--space-xs) var(--space-xxl);
+    font-size: var(--font-size-p);
+    font-weight: 600;
+    transition: all .2s ease-in-out;
+    min-width: 160px;
+    text-align: center;
+    border: 2px solid var(--text-primary);
+    border-radius: var(--border-radius-small);
+}
+
+.hero_links_wrapper a:hover{
+    transform: translateY(-2px);
+    scale: 1.06;
+}
+
+.login_link{
+    color: var(--text-primary);
+}
+
+.signup_link{
+    color: var(--bg-primary);
+    background-color: var(--text-primary);
+}
+
+@media screen and (max-width: 1090px) {
+    .hero h1{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .hero h1{
+        font-size: var(--font-size-h3);
+        text-align: center;
+    }
+
+    .hero p, .heroSkeleton p{
+        text-align: center;
+        align-self: center;
+    }
+
+    .heroSkeleton p{
+        width: 90%;
+        height: 20px;
+    }
+
+    .hero_links_wrapper, .hero_links_wrapperSkeleton{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .hero h1{
+        font-size: var(--font-size-h3);
+    }
+
+    .hero_links_wrapper a{
+        font-size: var(--font-size-small);
+    }
+}

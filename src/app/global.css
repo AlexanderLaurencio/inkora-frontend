@@ -42,7 +42,7 @@
     --space-m: min(7.5%, 1rem);
     --space-x: min(15%, 1.5rem); /**/
     --space-xl: min(20%, 2rem);
-    --space-xxl: min(25%, 2.5rem);
+    --space-xxl: min(25%, 2.5rem); /**/
     --space-xxxl: min(30%, 3rem);
     --space-xxxxl: min(35%, 3.5rem);
     --space-xxxxxl: min(40%, 4rem);
