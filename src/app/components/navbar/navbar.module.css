@@ -5,7 +5,7 @@
     padding: var(--space-xs);
     align-items: center;
     width: 100%;
-    min-height: 40px;
+    min-height: 5dvh;
     max-height: 40px;
 }
 

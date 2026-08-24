@@ -1,0 +1,134 @@
+.footer, .footerSkeleton{
+    padding: var(--space-xs);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    grid-template-areas: 
+        "left right"
+        "left right"
+        "center center"
+    ;
+    background-color: var(--bg-secondary);
+    min-height: 15dvh;
+    row-gap: var(--space-xs);
+}
+
+.footerSkeleton{
+    user-select: none;
+    pointer-events: none;
+}
+
+.footer_left_side, .footer_left_sideSkeleton{
+    grid-area: left;
+}
+
+.brand_nav, .brand_navSkeleton{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo, .logoSkeleton{
+    font-size: var(--font-size-h1);
+    font-family: "Merriweather";
+    color: var(--text-primary);
+}
+
+.logoSkeleton{
+    color: transparent;
+    background-color: var(--bg-primary);
+    border-radius: calc(var(--border-radius-large) * 6);
+    width: min-content;
+    max-height: 60px;
+}
+
+.brand_nav_list, .brand_nav_listSkeleton{
+    display: flex;
+    column-gap: var(--space-xs);
+}
+
+.brand_nav_listSkeleton{
+    margin-top: var(--space-xs);
+}
+
+.brand_nav_element a, .brand_nav_element span{
+    color: var(--text-secondary);
+    font-size: var(--font-size-small);
+}
+
+.brand_nav_elementSkeleton span{
+    color: transparent;
+}
+
+.brand_nav_elementSkeleton a{
+    color: transparent;
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-medium);
+}
+
+.copyright, .copyrightSkeleton{
+    grid-area: center;
+    align-self: end;
+    justify-self: center;
+    font-size: var(--font-size-small);
+}
+
+.copyrightSkeleton{
+    margin-top: var(--space-x);
+    max-height: 20px;
+    color: transparent;
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-medium);
+    max-width: 80%;
+    justify-self: center;
+}
+
+.footer_right_side, .footer_right_sideSkeleton{
+    justify-self: end;
+    grid-area: right;
+}
+
+.quicklinks_nav, .quicklinks_navSkeleton{
+    display: flex;
+    flex-direction: column;
+}
+
+.quicklinks_list_title, .quicklinks_list_titleSkeleton {
+    align-self: center;
+    color: var(--text-primary);
+}
+
+.quicklinks_list_titleSkeleton{
+    color: transparent;
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-medium);
+    justify-self: center;
+}
+
+.quicklinks_list, .quicklinks_listSkeleton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quicklinks_list_elementSkeleton{
+    display: flex;
+}
+
+.quicklinks_list_link, .quicklinks_list_linkSkeleton a{
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+}
+
+.quicklinks_list_linkSkeleton{
+    color: transparent;
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-medium);
+    justify-self: center;
+    margin: var(--space-xs) auto;
+}
+
+@media screen and (max-width: 590px) {
+    .copyright, .copyrightSkeleton{
+        margin-top: var(--space-x);
+    }
+}

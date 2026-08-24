@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     padding: 0 var(--space-x);
+    min-height: 95dvh;
+    max-height: 1000px;
 }
-
 
 .heroSkeleton{
     user-select: none;
