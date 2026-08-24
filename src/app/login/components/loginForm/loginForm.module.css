@@ -1,0 +1,92 @@
+.login_form, .login_formSkeleton{
+    margin: auto;
+    justify-self: center;
+    background-color: var(--bg-secondary);
+    height: 80dvh;
+    max-height: 700px;
+    border-radius: var(--border-radius-small);
+    padding: var(--space-x);
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 550px;
+    margin-top: var(--space-xxxxl);
+}
+
+.login_formSkeleton{
+    user-select: none;
+    pointer-events: none;
+}
+
+.login_form h2, .login_formSkeleton h2{
+    font-size: var(--font-size-h2);
+    font-family: "Merriweather";
+    text-align: center;
+    margin-bottom: var(--space-xxxxl);
+}
+
+.login_formSkeleton h2{
+    background-color: var(--bg-primary);
+    width: max-content;
+    border-radius: calc(var(--border-radius-large) * 6);
+    color: transparent;
+    align-self: center;
+}
+
+.login_form input, .login_formSkeleton input{
+    border: 0;
+    border-radius: var(--border-radius-small);
+    background-color: var(--bg-primary);
+    padding: var(--space-xs) var(--space-s);
+    height: 40px;
+    margin-top: var(--space-s);
+}
+
+.login_form input::placeholder{
+    font-size: var(--font-size-small);
+}
+
+.login_form input:focus-visible{
+    outline: none;
+}
+
+.login_form p, .login_formSkeleton p{
+    color: var(--text-secondary);
+    margin-top: var(--space-s);
+}
+
+.login_form p a{
+    color: var(--accent-color);
+}
+
+.login_formSkeleton p{
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-small);
+    width: max-content;
+    color: transparent;
+}
+
+.login_formSkeleton p a{
+    color: transparent;
+}
+
+.login_form_button_login, .login_form_button_loginSkeleton{
+    align-self: end;
+    margin-top: auto;
+    padding: var(--space-s) var(--space-x);
+    border: 0;
+    border-radius: var(--border-radius-small);
+    color: var(--bg-secondary);
+    background-color: var(--text-primary);
+    font-size: var(--font-size-small);
+    transition: opacity .15s ease-in-out;
+}
+
+.login_form_button_loginSkeleton{
+    color: transparent;
+    background-color: var(--bg-primary);
+}
+
+.login_form_button_login:hover{
+    opacity: .8;
+}
