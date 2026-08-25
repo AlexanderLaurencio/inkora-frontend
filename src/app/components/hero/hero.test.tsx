@@ -1,6 +1,5 @@
 import {test, expect} from "vitest"
 import {render, screen} from "@testing-library/react"
-import { beforeEach } from "vitest"
 import Hero from "./hero"
 import '@testing-library/jest-dom/vitest';
 

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx"
 
 interface Sidenav {
-    onShowSidenav: () => void
+    onShowSidenav?: () => void
 }
 
 export default function Sidenav({onShowSidenav}: Sidenav) {

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation"
 import clsx from "clsx"
 
 interface Navbar {
-    onShowSidenav: () => void
+    onShowSidenav?: () => void
 }
 
 export default function Navbar({onShowSidenav}: Navbar) {
