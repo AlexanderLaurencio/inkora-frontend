@@ -4,7 +4,7 @@ import LoginFormSkeleton from "./components/loginForm/loginFormSkeleton"
 
 export default function Login() {
     return(
-        <main>
+        <main data-testid="login">
             <Suspense fallback={<LoginFormSkeleton />}>
                 <LoginForm />
             </Suspense>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Inkora | Login",
+  title: "Inkora | Log in",
   description: "Inkora is blogging platform where users can blogs publish posts",
 };
 
