@@ -5,8 +5,8 @@ import NavbarSkeleton from "./components/navbar/navbarSkeleton";
 import Sidenav from "./components/sidenav/sidenav";
 import Hero from "./components/hero/hero";
 import HeroSkeleton from "./components/hero/heroSkeleton";
-import Footer from "@/components/footer/footer";
-import FooterSkeleton from "@/components/footer/footerSkeleton";
+import Footer from "./../components/footer/footer";
+import FooterSkeleton from "./../components/footer/footerSkeleton";
 
 
 export default function Home() {

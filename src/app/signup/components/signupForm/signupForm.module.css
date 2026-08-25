@@ -64,6 +64,7 @@ label:has(.inputProfileImage, .inputProfileImageSkeleton){
 
 .form textarea, .formSkeleton textarea{
     resize: vertical;
+    height: 50px;
     max-height: 50px;
 }
 
