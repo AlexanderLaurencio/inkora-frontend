@@ -7,12 +7,12 @@ export default function SignupFormSkeleton() {
             <label>
                 <input type="file" name="image" className={styles.inputProfileImageSkeleton}/>
             </label>
-            <input type="text" name="displayName" aria-label="display name" required 
+            <input type="text" name="displayName" aria-label="display name"
                />
-            <input type="text" name="username" aria-label="username name" required 
+            <input type="text" name="username" aria-label="username name" 
                 />
-            <input type="password" name="password" aria-label="password" required
-            minLength={8}/>
+            <input type="password" name="password" aria-label="password"
+            />
             <textarea name="description" aria-label="profile description" 
             />
             <button className={styles.form_button_signupSkeleton}>Sign up</button>
