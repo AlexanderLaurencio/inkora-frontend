@@ -2,7 +2,7 @@
 import { useState } from "react"
 import styles from "./signupForm.module.css"
 import { useRouter } from "next/router";
-import { SERVER } from "@/constants";
+import { SERVER_URL } from "@/constants";
 
 export default function SignupForm() {
     const [isError, setIsError] = useState(false);
@@ -119,7 +119,7 @@ export default function SignupForm() {
 
         console.log(user);
 
-        let request = await fetch("baar.com", {
+        let request = await fetch(SERVER_URL, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -154,7 +154,7 @@ export default function SignupForm() {
                 <input type="text" name="username" maxLength={30} aria-label="username" required
                     placeholder="Username" onChange={(e) => {
                         setUsername(e.target.value);
-                        doesUserExist(e.target.value);
+                        //doesUserExist(e.target.value);
 
                     }} />
 
