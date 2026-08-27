@@ -3,7 +3,7 @@
     justify-self: center;
     background-color: var(--bg-secondary);
     height: 90dvh;
-    max-height: 860px;
+    max-height: 890px;
     border-radius: var(--border-radius-small);
     padding: var(--space-x);
     display: flex;
@@ -11,6 +11,7 @@
     width: 90%;
     max-width: 550px;
     margin-top: var(--space-xxl);
+    overflow: hidden;
 }
 
 .formSkeleton{
@@ -35,6 +36,10 @@
 
 .form input, .form label, .formSkeleton input, .formSkeleton label{
     margin-top: var(--space-s);
+}
+
+.form label{
+    text-align: center;
 }
 
 .inputProfileImage, .formSkeleton .inputProfileImageSkeleton{
@@ -78,7 +83,7 @@ label:has(.inputProfileImage, .inputProfileImageSkeleton){
 
 .form_button_signup, .form_button_signupSkeleton{
     align-self: end;
-    margin-top: auto;
+    margin-top: var(--space-s);
     padding: var(--space-s) var(--space-x);
     border: 0;
     border-radius: var(--border-radius-small);
@@ -95,4 +100,11 @@ label:has(.inputProfileImage, .inputProfileImageSkeleton){
 
 .form_button_signup:hover{
     opacity: .8;
+}
+
+.fileError{
+    color: var(--accent-color);
+    align-self: start;
+    font-weight: 600;
+    font-size: var(--font-size-small);
 }
