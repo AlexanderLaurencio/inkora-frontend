@@ -1,10 +1,11 @@
 "use client"
 import { useState } from "react"
 import styles from "./signupForm.module.css"
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router"
 import { SERVER_URL } from "@/constants";
 
 export default function SignupForm() {
+    const router = useRouter();
     const [isError, setIsError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [displayName, setDisplayName] = useState("");
@@ -47,7 +48,6 @@ export default function SignupForm() {
         });
 
         reader.addEventListener("load", () => {
-            console.log(reader.result);
             setProfileImage(reader.result);
         });
 
@@ -68,7 +68,7 @@ export default function SignupForm() {
     };
 
     async function doesUserExist(user: string) {
-        let request = await fetch(SERVER + `?user=${user}`);
+        let request = await fetch(SERVER_URL + `?user=${user}`);
 
         interface Response {
             userExists: boolean
@@ -77,7 +77,7 @@ export default function SignupForm() {
         let response = await request.json() as Response;
 
         if (!request.ok) {
-            console.error("Error verifying whether the usern exist.");
+            console.error("Error verifying whether the user exist.");
             showError("Error verifying whether the user exist.");
             return
         }
@@ -117,9 +117,7 @@ export default function SignupForm() {
             profileImage: ProfileImage ? ProfileImage : null
         }
 
-        console.log(user);
-
-        let request = await fetch(SERVER_URL, {
+        let request = await fetch(SERVER_URL + location.pathname, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -131,13 +129,11 @@ export default function SignupForm() {
 
         if (!request.ok) {
             console.error("Error while creating user", response);
-            showError(response);
+            showError("Server Internal Error");
             return
         }
-
-        const router = useRouter();
-
-        router.push("/");
+        
+        router?.push("/")
 
     }
 
