@@ -2,7 +2,8 @@
 import { useState } from "react"
 import styles from "./signupForm.module.css"
 import { useRouter } from "next/compat/router"
-import { SERVER_URL } from "@/constants";
+import { SERVER_URL } from "@/app/constants/constants";
+import { isEmpty } from "@/app/utils/isEmpty/isEmpty";
 
 export default function SignupForm() {
     const router = useRouter();
@@ -12,7 +13,7 @@ export default function SignupForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [profileDescription, setProfileDescription] = useState("");
-    const [ProfileImage, setProfileImage] = useState<string | ArrayBuffer | null>();
+    const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>();
     const [userExists, setUserExists] = useState(false);
 
     function showError(msg: string) {
@@ -20,10 +21,10 @@ export default function SignupForm() {
         setErrorMsg(msg)
     }
 
-    function isValidImage(file: File) {
+    function isValidImage(img: File) {
 
         //If the image is too heavy
-        if (file.size > 2000000) {
+        if (img.size > 2000000) {
             showError("The image is too heavy. Please insert an image that weighs less than two megabytes.")
             return false
         }
@@ -33,39 +34,26 @@ export default function SignupForm() {
     }
 
 
-    function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
-        let img: File = e.target.files![0];
+    async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+        setIsError(false);
 
-        const reader = new FileReader();
-
-        reader.addEventListener("loadstart", () => {
-            setIsError(false)
-
-            if (!isValidImage(img)) {
-                reader.abort()
-            }
-
-        });
-
-        reader.addEventListener("load", () => {
-            setProfileImage(reader.result);
-        });
-
-        reader.addEventListener("error", (e) => {
-            console.error("Error while reading the file", reader.error);
-            showError("An error occurred while reading the image.");
-        });
-
-        reader.readAsArrayBuffer(img);
-    }
-
-    function isEmpty(value: string) {
-        if (!value) {
-            return true
+        if (!isValidImage(e.target.files![0])) {
+            return
         }
 
-        return false
-    };
+        let img = await e.target.files![0].arrayBuffer();
+        let bytes = new Uint8Array(img);
+        
+        let binary = "";
+
+        for (const byte of bytes) {
+            binary += String.fromCharCode(byte)
+        }
+
+        let base64 = btoa(binary);
+
+        setProfileImage(base64);
+    }
 
     async function doesUserExist(user: string) {
         let request = await fetch(SERVER_URL + `?user=${user}`);
@@ -114,7 +102,7 @@ export default function SignupForm() {
             displayName: displayName,
             password: password,
             profileDescription: profileDescription,
-            profileImage: ProfileImage ? ProfileImage : null
+            profileImage: profileImage ? profileImage : null
         }
 
         let request = await fetch(SERVER_URL + location.pathname, {
@@ -132,6 +120,8 @@ export default function SignupForm() {
             showError("Server Internal Error");
             return
         }
+
+        console.log(response);
         
         router?.push("/")
 
@@ -144,7 +134,7 @@ export default function SignupForm() {
                 <label>
                     upload profile image
                     <input type="file" name="image" className={styles.inputProfileImage}
-                        onChange={handleFile} accept="image/*" />
+                        onChange={handleFile} accept="image/*"/>
                 </label>
 
                 <input type="text" name="username" maxLength={30} aria-label="username" required

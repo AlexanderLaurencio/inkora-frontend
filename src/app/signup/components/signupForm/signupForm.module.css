@@ -2,6 +2,7 @@
     margin: auto;
     justify-self: center;
     background-color: var(--bg-secondary);
+    min-height: 500px;
     height: 90dvh;
     max-height: 890px;
     border-radius: var(--border-radius-small);
