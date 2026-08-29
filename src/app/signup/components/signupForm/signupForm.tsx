@@ -116,8 +116,8 @@ export default function SignupForm() {
         let response = await request.text();
 
         if (!request.ok) {
-            console.error("Error while creating user", response);
-            showError("Server Internal Error");
+            console.error(response);
+            showError(response);
             return
         }
 
