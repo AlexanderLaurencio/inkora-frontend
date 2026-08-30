@@ -24,10 +24,10 @@ export default function SignupForm() {
     function isValidImage(img: File) {
 
         //If the image is too heavy
-        // if (img.size > 2000000) {
-        //     showError("The image is too heavy. Please insert an image that weighs less than two megabytes.")
-        //     return false
-        // }
+        if (img.size > 2000000) {
+            showError("The image is too heavy. Please insert an image that weighs less than two megabytes.")
+            return false
+        }
 
         return true
 
