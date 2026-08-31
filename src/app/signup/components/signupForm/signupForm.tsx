@@ -77,13 +77,18 @@ export default function SignupForm() {
     async function handleSendForm(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        if (isEmpty(displayName)) {
-            showError("The field display name is empty. Fill it out.");
+        if (isEmpty(username)) {
+            showError("The field username is empty. Fill it out.");
             return
         }
 
-        if (isEmpty(username)) {
-            showError("The field username is empty. Fill it out.");
+        if(username.includes(" ")) {
+            showError("The username cannot include spaces.");
+            return
+        }
+
+        if (isEmpty(displayName)) {
+            showError("The field display name is empty. Fill it out.");
             return
         }
 
