@@ -10,7 +10,6 @@ interface Sidenav {
 export default function Sidenav({onShowSidenav}: Sidenav) {
 
     let pathname = usePathname();
-    console.log(pathname)
 
     return(
         <nav aria-label="header" className={styles.sidenav} id="sidenav">

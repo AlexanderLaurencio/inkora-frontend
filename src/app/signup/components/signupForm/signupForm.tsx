@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import styles from "./signupForm.module.css"
-import { useRouter } from "next/compat/router"
+import { useRouter } from "next/navigation"
 import { SERVER_URL } from "@/app/constants/constants";
 import { isEmpty } from "@/app/utils/isEmpty/isEmpty";
 
@@ -13,7 +13,7 @@ export default function SignupForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [profileDescription, setProfileDescription] = useState("");
-    const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>();
+    const [profileImage, setProfileImage] = useState<string | null>();
     const [userExists, setUserExists] = useState(false);
 
     function showError(msg: string) {
@@ -43,7 +43,7 @@ export default function SignupForm() {
 
         let img = await e.target.files![0].arrayBuffer();
         let bytes = new Uint8Array(img);
-        
+
         let binary = "";
 
         for (const byte of bytes) {
@@ -56,21 +56,28 @@ export default function SignupForm() {
     }
 
     async function doesUserExist(user: string) {
-        let request = await fetch(SERVER_URL + `?user=${user}`);
+        try {
 
-        interface Response {
-            userExists: boolean
+            if (user.trim()) {
+                let request = await fetch(SERVER_URL + "/signup" + `?user=${user}`);
+
+                interface Response {
+                    exists: boolean
+                }
+
+                let response = await request.json() as Response;
+
+                if (!request.ok) {
+                    showError("Error verifying whether the user exist.");
+                    throw new Error("Error verifying whether the user exist.")
+                }
+
+                setUserExists(response.exists);
+            }
+
+        } catch(error) {
+            console.error(error);
         }
-
-        let response = await request.json() as Response;
-
-        if (!request.ok) {
-            console.error("Error verifying whether the user exist.");
-            showError("Error verifying whether the user exist.");
-            return
-        }
-
-        setUserExists(response.userExists)
 
     }
 
@@ -82,7 +89,7 @@ export default function SignupForm() {
             return
         }
 
-        if(username.includes(" ")) {
+        if (username.includes(" ")) {
             showError("The username cannot include spaces.");
             return
         }
@@ -110,59 +117,62 @@ export default function SignupForm() {
             profileImage: profileImage ? profileImage : null
         }
 
-        let request = await fetch(SERVER_URL + location.pathname, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(user)
-        });
+        try {
+            let request = await fetch(SERVER_URL + location.pathname, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify(user)
+            });
 
-        let response = await request.text();
+            let response = await request.text();
 
-        if (!request.ok) {
-            console.error(response);
-            showError(response);
-            return
+            if (!request.ok) {
+                showError(response);
+                throw new Error(response)
+            }
+
+            router.push("/");
+
+        } catch(error) {
+            console.log(error)
         }
 
-        console.log(response);
-        
-        router?.push("/")
-
     }
 
-        return (
-            <form className={styles.form}>
-                <h2>Sign up</h2>
+    return (
+        <form className={styles.form}>
+            <h2>Sign up</h2>
 
-                <label>
-                    upload profile image
-                    <input type="file" name="image" className={styles.inputProfileImage}
-                        onChange={handleFile} accept="image/*"/>
-                </label>
+            <label>
+                upload profile image
+                <input type="file" name="image" className={styles.inputProfileImage}
+                    onChange={handleFile} accept="image/*" />
+            </label>
 
-                <input type="text" name="username" maxLength={30} aria-label="username" required
-                    placeholder="Username" onChange={(e) => {
-                        setUsername(e.target.value);
-                        //doesUserExist(e.target.value);
+            <input type="text" name="username" maxLength={30} aria-label="username" required
+                placeholder="Username" onChange={(e) => {
+                    setUsername(e.target.value);
+                    doesUserExist(e.target.value);
 
-                    }} />
+                }} />
 
-                {userExists && <p role="alert">That user already exists.</p>}
+            {userExists && <p role="alert" className={styles.user_exists}>That user already exists.</p>}
 
-                <input type="text" name="displayName" maxLength={30} aria-label="display name" required
-                    placeholder="Display name" onChange={(e) => setDisplayName(e.target.value)} />
+            <input type="text" name="displayName" maxLength={30} aria-label="display name" required
+                placeholder="Display name" onChange={(e) => setDisplayName(e.target.value)} />
 
-                <input type="password" name="password" aria-label="password" required placeholder="Password"
-                    minLength={8} maxLength={64} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" name="password" aria-label="password" required placeholder="Password"
+                minLength={8} maxLength={64} onChange={(e) => setPassword(e.target.value)} />
 
-                <textarea name="description" maxLength={120} aria-label="profile description"
-                    placeholder="Profile description" onChange={(e) => setProfileDescription(e.target.value)} />
+            <textarea name="description" maxLength={120} aria-label="profile description"
+                placeholder="Profile description" onChange={(e) => setProfileDescription(e.target.value)} />
 
-                <button className={styles.form_button_signup} onClick={handleSendForm}>Sign up</button>
+            <button className={styles.form_button_signup} onClick={handleSendForm}>Sign up</button>
 
-                {isError && <p className={styles.fileError} role="alert">{errorMsg}</p>}
-            </form>
-        )
-    }
+            {isError && <p className={styles.fileError} role="alert">{errorMsg}</p>}
+        </form>
+    )
+}

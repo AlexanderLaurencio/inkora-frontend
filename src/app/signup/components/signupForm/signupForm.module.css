@@ -114,3 +114,7 @@ label:has(.inputProfileImage, .inputProfileImageSkeleton){
     overflow: hidden;
     max-height: var(--font-size-small);
 }
+
+.user_exists{
+    font-size: var(--font-size-small);
+}

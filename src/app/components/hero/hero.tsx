@@ -2,7 +2,7 @@ import Link from "next/link"
 import styles from "./hero.module.css"
 
 export default function Hero() {
-    return(
+    return (
         <section className={styles.hero} data-testid="hero">
             <h1>A place to share and acquire knowledge</h1>
             <p>Create your own blogs and publish all the posts you want.</p>

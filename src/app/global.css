@@ -68,6 +68,11 @@
     padding: 0;
 }
 
+*::selection{
+    background-color: var(--text-secondary);
+    color: var(--bg-primary);
+}
+
 ul, ol{
     list-style: none;
 }

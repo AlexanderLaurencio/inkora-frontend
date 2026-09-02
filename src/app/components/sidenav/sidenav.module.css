@@ -1,9 +1,8 @@
-
 .sidenav{
     height: 100dvh;
     width: 100%;
     background-color: var(--bg-primary);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: none;
@@ -51,7 +50,6 @@
     padding: var(--space-l) 0;
     width: 100%;
 }
-
 
 @media screen and (max-width: 550px) {
     .sidenav{
