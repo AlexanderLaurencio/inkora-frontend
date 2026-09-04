@@ -2,8 +2,8 @@
 import { useState } from "react"
 import styles from "./signupForm.module.css"
 import { useRouter } from "next/navigation"
-import { SERVER_URL } from "@/app/constants/constants";
-import { isEmpty } from "@/app/utils/isEmpty/isEmpty";
+import { SERVER_URL } from "../../../constants/constants"
+import { isEmpty } from "../../../utils/isEmpty/isEmpty";
 
 export default function SignupForm() {
     const router = useRouter();
@@ -143,13 +143,13 @@ export default function SignupForm() {
     }
 
     return (
-        <form className={styles.form}>
+        <form className={styles.form} role="form">
             <h2>Sign up</h2>
 
-            <label>
+            <label htmlFor="inputProfileImage">
                 upload profile image
                 <input type="file" name="image" className={styles.inputProfileImage}
-                    onChange={handleFile} accept="image/*" />
+                    onChange={handleFile} accept="image/*" id="inputProfileImage"/>
             </label>
 
             <input type="text" name="username" maxLength={30} aria-label="username" required
