@@ -2,7 +2,7 @@
 import { useState } from "react"
 import styles from "./signupForm.module.css"
 import { useRouter } from "next/navigation"
-import { SERVER_URL } from "../../../constants/constants"
+import { CONTENT_TYPE, SERVER_URL } from "../../../constants/constants"
 import { isEmpty } from "../../../utils/isEmpty/isEmpty";
 
 export default function SignupForm() {
@@ -35,11 +35,12 @@ export default function SignupForm() {
 
 
     async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
-        setIsError(false);
 
         if (!isValidImage(e.target.files![0])) {
             return
         }
+
+        setIsError(false);
 
         let img = await e.target.files![0].arrayBuffer();
         let bytes = new Uint8Array(img);
@@ -53,6 +54,8 @@ export default function SignupForm() {
         let base64 = btoa(binary);
 
         setProfileImage(base64);
+
+
     }
 
     async function doesUserExist(user: string) {
@@ -84,28 +87,7 @@ export default function SignupForm() {
     async function handleSendForm(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        if (isEmpty(username)) {
-            showError("The field username is empty. Fill it out.");
-            return
-        }
-
-        if (username.includes(" ")) {
-            showError("The username cannot include spaces.");
-            return
-        }
-
-        if (isEmpty(displayName)) {
-            showError("The field display name is empty. Fill it out.");
-            return
-        }
-
-        if (isEmpty(password)) {
-            showError("The field password is empty. Fill it out.");
-            return
-        }
-
-        if (password.length <= 7) {
-            showError("The password must contain at least 8 characters.");
+        if (!validData()) {
             return
         }
 
@@ -118,11 +100,11 @@ export default function SignupForm() {
         }
 
         try {
-            let request = await fetch(SERVER_URL + location.pathname, {
+            let request = await fetch(SERVER_URL + "/signup", {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-type": "application/json",
+                    "Content-type": CONTENT_TYPE.json,
                 },
                 body: JSON.stringify(user)
             });
@@ -131,15 +113,47 @@ export default function SignupForm() {
 
             if (!request.ok) {
                 showError(response);
-                throw new Error(response)
+                return
             }
 
             router.push("/");
 
         } catch(error) {
-            console.log(error)
+            console.error(error);
+            showError("Sorry, something went wrong :(")
         }
 
+    }
+
+    function validData() {
+        if (isEmpty(username)) {
+            showError("The field username is empty. Fill it out.");
+            return false
+        }
+
+        if (username.includes(" ")) {
+            showError("The username cannot include spaces.");
+            return false
+        }
+
+        if (isEmpty(displayName)) {
+            showError("The field display name is empty. Fill it out.");
+            return false
+        }
+
+        if (isEmpty(password)) {
+            showError("The field password is empty. Fill it out.");
+            return false
+        }
+
+        if (password.length <= 7) {
+            showError("The password must contain at least 8 characters.");
+            return false
+        }
+
+        //If the data the user inserts meet the requirments the error isn't shown
+        setIsError(false);
+        return true
     }
 
     return (
@@ -172,7 +186,7 @@ export default function SignupForm() {
 
             <button className={styles.form_button_signup} onClick={handleSendForm}>Sign up</button>
 
-            {isError && <p className={styles.fileError} role="alert">{errorMsg}</p>}
+            {isError && <p className={styles.errorMessage} role="alert">{errorMsg}</p>}
         </form>
     )
 }

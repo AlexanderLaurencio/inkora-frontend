@@ -2,7 +2,6 @@ import {beforeEach, describe, expect, test, vi} from "vitest"
 import { render, screen} from "@testing-library/react" 
 import userEvent from "@testing-library/user-event"
 import SignupForm from "./signupForm"
-import '@testing-library/jest-dom/vitest';
 
 vi.mock("next/navigation", async () => {
     return {
@@ -14,7 +13,7 @@ vi.mock("next/navigation", async () => {
 
 describe("SignupForm must appear in the screen and show the corresponding error messages", () => {
 
-    const user = userEvent;
+    const user = userEvent.setup();
 
     beforeEach(() => {
         render(<SignupForm />);

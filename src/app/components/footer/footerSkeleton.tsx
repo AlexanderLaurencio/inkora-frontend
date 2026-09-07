@@ -8,7 +8,7 @@ export default function FooterSkeleton() {
             <div className={styles.footer_left_sideSkeleton}>
 
                 <nav className={styles.brand_navSkeleton} aria-label="footer brand">
-                    <Link href="/" className={styles.logoSkeleton}>BLOG</Link>
+                    <Link href="/" className={styles.logoSkeleton}>INKORA</Link>
                     <ul className={styles.brand_nav_listSkeleton}>
                         <li className={styles.brand_nav_elementSkeleton}>
                             <Link href="/terms" className={styles.brand_nav_linkSkeleton}>Terms</Link>

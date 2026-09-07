@@ -10,7 +10,7 @@ test("Links in the footer should link to their corresponding pages", () => {
 
     expect(screen.getByText(/© Alexander Neftali Miranda All rights reserved 2026/i))
 
-    expect(screen.getByRole("link", {name: /BLOG/i})).toHaveAttribute("href","/");
+    expect(screen.getByRole("link", {name: /INKORA/i})).toHaveAttribute("href","/");
 
     expect(screen.getByRole("link", {name: /Terms/i})).toHaveAttribute("href","/terms");
 

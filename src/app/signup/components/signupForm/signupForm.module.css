@@ -103,7 +103,7 @@ label:has(.inputProfileImage, .inputProfileImageSkeleton){
     opacity: .8;
 }
 
-.fileError{
+.errorMessage{
     color: var(--accent-color);
     align-self: start;
     font-weight: 600;
@@ -111,7 +111,7 @@ label:has(.inputProfileImage, .inputProfileImageSkeleton){
     max-width: 100%;
     text-wrap: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow-x: hidden;
     max-height: var(--font-size-small);
 }
 

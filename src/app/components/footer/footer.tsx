@@ -7,7 +7,7 @@ export default function Footer(){
 
             <div className={styles.footer_left_side}>
                 <nav className={styles.brand_nav} aria-label="footer brand">
-                    <Link href="/" className={styles.logo}>BLOG</Link>
+                    <Link href="/" className={styles.logo}>INKORA</Link>
                     <ul className={styles.brand_nav_list}>
                         <li className={styles.brand_nav_element}>
                             <Link href="/terms" className={styles.brand_nav_link}>Terms</Link>

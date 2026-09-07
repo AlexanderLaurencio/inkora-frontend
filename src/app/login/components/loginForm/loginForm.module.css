@@ -90,3 +90,15 @@
 .login_form_button_login:hover{
     opacity: .8;
 }
+
+.errorMessage{
+    color: var(--accent-color) !important;
+    align-self: start;
+    font-weight: 600;
+    font-size: var(--font-size-small);
+    max-width: 100%;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: var(--font-size-small);
+}
