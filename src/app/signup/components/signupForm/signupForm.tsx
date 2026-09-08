@@ -116,7 +116,9 @@ export default function SignupForm() {
                 return
             }
 
-            router.push("/");
+            //If the request succeds
+            console.log("User created successfully.");
+            router.push("/app");
 
         } catch(error) {
             console.error(error);

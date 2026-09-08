@@ -29,6 +29,7 @@ export function LoginForm() {
 
             let request = await fetch(SERVER_URL + "/login", {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-type": CONTENT_TYPE.json,
                 },
@@ -42,9 +43,9 @@ export function LoginForm() {
                 return
             }
 
-            //If request successes
+            //If request succeds
             console.log("Logged in sucessfully");
-            router.push("/app");
+            router.push("/app")
 
         } catch(error) {
             console.error(error);
