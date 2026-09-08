@@ -12,6 +12,7 @@
 .navbarSkeleton{
     user-select: none;
     pointer-events: none;
+    background-color: var(--bg-secondary);
 }
 
 .logo{
